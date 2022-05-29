@@ -54,7 +54,7 @@ If there is ever a decision between multiple neighbor nodes in the BFS or DFS al
 	\item[a)]{} Consider the following adjacency matrix:
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[width=4.5in]{graph4a.pdf}
+			%\includegraphics[width=4.5in]{graph4a.pdf}
 		\end{figure}
 		
 		\begin{itemize}
@@ -68,7 +68,7 @@ If there is ever a decision between multiple neighbor nodes in the BFS or DFS al
 	\item[c)]{} Using matrix multiplications, find all the triangles in the graph, represented by the following adjacency matrix:
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[width=3.6in]{graph4c.pdf}
+			%\includegraphics[width=3.6in]{graph4c.pdf}
 		\end{figure}
 \end{itemize}
 \end{problem}
@@ -141,7 +141,7 @@ You are given a directed graph $G = (V, E)$, where $V = \{1, \ldots , n\}$, i.e.
 \end{solution}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Unfinished %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Finished %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Problem 4 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -157,7 +157,7 @@ You are given a set of cities, along with the pattern of highways between them, 
 \begin{solution}
 \begin{itemize}
 	\item[a)]{} I will assume, for the rest of this problem, that the edges in this graph (the highways between cities) are given in the form of an adjacency matrix.  This is for the fact that there are no parallel edges (edges between the same two vertices) in an adjacency matrix and this simplifies the problem.  However, in the case that the edges are not given in the form of an adjacency matrix, it is fairly simple to map the edges to an adjacency matrix by eliminating parallel edges through only considering the shortest edge (highway) between any two given cities.  Now, considering that we have the edges listed in an adjacency matrix, we can apply a clamping function to transform it into a $0/1$ adjacency matrix.  This effectively entails iterating over each edge and setting it to 1 if it is less than the length that we can drive and 0 if it is longer than we can drive.  Now, we effectively have a $0/1$ adjacency matrix that represents which roads we can and cannot travel on, and we can actually begin our algorithm. Note, however that each of these operations is linear with respect to the number of edges that are in the graph ($|E|$) and so we have not yet exceeded the runtime allocation of this problem.  Now, we can consider applying BFS or DFS to this matrix (which both run in $O(|V|+|E|)$) to the $0/1$ matrix that we have constructed and by doing so, find a feasible route from any vertex to another in linear time.
-	\item[b)]{} 
+	\item[b)]{} Calculating the minimum fuel tank capacity required to travel from $s$ to $t$ is equivalent to calculating the maximum edge length needed to take in the path from $s$ to $t$.  The runtime allocation in the problem is somewhat illustrative of what algorithm we need to use (or modify) in order to solve the problem.  Dijkstra's algorithm has a running time of $O((\mid V \mid + \mid E \mid) \log {\mid V \mid})$, so if we could modify it in some way to accurately calculate the longest individual edge length in the path from $s$ to $t$, we can solve this problem.  The first method for which we could try to calculate the minimum tank capacity required is by adding back tracking to our Dijkstra's implementation and using it to find the maximal edge length in our path from $s$ to $t$.  This seems promising, but it is flawed.  Dijkstra's algorithm as it is normally implemented optimized the overall path length, not the individual edge lengths used in the path.  Through this approach, we are not guaranteed that the path that we have found actually minimizes the fuel tank required, so we must consider another method.  Now, we can consider extending a path from $v'$ to $v$, the maximum edge length in the path from $s$ to $v$, $m(v)$ is equal to $max(l(v',v),m(v'))$.  Now, we can use this recursion in this specific implementation of Dijkstra's algorithm to obtain, in $O((\mid V \mid + \mid E \mid) \log {\mid V \mid})$ time, the minimal tank capacity required to get from $s$ to $t$.
 \end{itemize}
 \end{solution}
 
@@ -173,7 +173,7 @@ You are given a set of cities, along with the pattern of highways between them, 
 Consider the following adjacency matrix:
 \begin{figure}[h!]
     \centering
-    \includegraphics[width = 2.5in]{BellFord}
+    %\includegraphics[width = 2.5in]{BellFord}
 \end{figure}
 \begin{itemize}
 	\item[a)]{} Draw the graph that is represented by this matrix.
